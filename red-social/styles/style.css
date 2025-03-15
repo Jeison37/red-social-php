@@ -1,0 +1,269 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.form-logo img{
+    height: 8rem;
+}
+
+.logo img{
+    height: 6em;
+}
+
+
+.heart_icon, .comment_icon{
+    height: 1.5rem;
+}
+
+
+
+.comment_box{
+    margin-bottom: 1rem;
+}
+
+body{
+    background-color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+}
+
+.login-container{
+    width: 350px;
+}
+
+.login-box{
+    width: 100%;
+    border: 1px solid #363636;
+    margin-bottom: 14px;
+}
+
+.form-head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 175px;
+}
+
+.form-body{
+
+    display: flex;
+    &_a{
+        align-self: start;
+    }
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 12px;
+
+}
+
+.input input{
+    width: 100%;
+
+    background-color: #121212;
+
+    border: 0;
+    
+    height: 100%;
+    
+    padding-inline: 6px;
+
+    color: #fff;
+    
+    &::placeholder{
+        color: #aaa;
+        
+    }
+}
+
+.input{
+    border: 1px solid #555555;
+    width: 250px;
+    height: 36px;
+    border-radius: 3px;
+}
+
+.form-btn input{
+    width: 250px;
+    margin-top: 1rem;
+    background-color: #0069ad;
+    color: #fff;
+    font-weight: bold;
+    padding: 9px 0px;
+    border: 0;
+    border-radius: 8px;
+}
+
+.password{
+    font-size: 14px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.register-box{
+    padding: 1.5rem 0;
+    font-size: 14px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #363636;
+
+    a{
+        width: fit-content;
+        text-decoration: none;
+        color: #0095f6;
+    }
+}
+
+
+/* main */
+
+span.hidden{
+    display: none;
+}
+
+.scroll{
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 100dvh;
+}
+
+.post-column, .comment_container{
+    display: flex;
+    max-width: 30rem;
+    flex-direction: column;
+    border-inline: 1px solid #2f3336;
+    min-height: 100dvh;
+    overflow-y: auto;
+}
+
+.left-side{
+    overflow-y: auto;
+    min-width: 6rem;
+    height: 100dvh;
+}
+
+main.container{
+    display: flex;
+    width: 100%;
+    max-height: 100dvh;
+    justify-content: start;
+    
+}
+
+#edit_window{
+    margin: auto;
+    padding: 3rem;
+    border: 0;
+    background-color: #000;
+    outline: none;
+    border-radius: 1rem;
+
+    &::backdrop{
+        background-color: #4099d450;
+    }
+}
+
+
+
+.post_form, .comment_form{
+    margin-top: 2rem;
+    border-top: 1px solid #2f3336;
+    border-bottom: 1px solid #2f3336;
+    padding: 10px;
+    
+        form{
+            display: flex;
+            flex-direction: column;
+    
+        }
+
+}
+
+.post_inp{
+    background-color: #000;
+    width: 100%;
+    height: 56px;
+    color: #fff;
+    outline: none;
+    font-size: 20px;
+    padding-inline: 1rem;
+    border: 0;
+}
+
+.post-btn{
+    align-self: end;
+    width: fit-content;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 10px;
+    border-radius: 20px;
+    border: 0;
+}
+
+.post_container, .comment_box{
+    position: relative;
+    margin-bottom: 1rem;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #2f3336;
+
+}
+
+.username{
+    font-weight: bold;
+}
+
+.email{
+    color: #aaa;
+}
+
+.user_post_data{
+    margin-bottom: 1rem;
+}
+
+.contenido{
+    margin-bottom: 1rem;
+}
+
+.actions{
+    padding-top: 1rem;
+    color: #71767B;
+    
+    button{
+        font-size: 16px;
+        background-color: #000;
+        border: 0;
+        cursor: pointer;
+        color: currentColor;
+
+        svg{
+            fill: currentColor;
+            font-weight: 400;
+    
+        }
+    }
+
+
+    button.liked.like{
+        color: #f91880;
+    }
+}
+
+
+/* Comment */
+.comment_user_post{
+    padding-inline: 2rem;
+    padding-top: 1.8rem;
+}

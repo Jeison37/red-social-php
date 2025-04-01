@@ -150,11 +150,28 @@ span.hidden{
 }
 
 .left-side{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     overflow-y: auto;
     min-width: 6rem;
     height: 100dvh;
 }
 
+.logout {
+
+    padding-bottom: 1rem;
+
+    input{
+        padding-inline: 1rem;
+        border: 0;
+        background-color: transparent;
+        color: #ae0000;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
 main.container{
     display: flex;
     width: 100%;
@@ -175,8 +192,6 @@ main.container{
         background-color: #4099d450;
     }
 }
-
-
 
 .post_form, .comment_form{
     margin-top: 2rem;
@@ -229,6 +244,12 @@ main.container{
     color: #aaa;
 }
 
+.text-email{
+    color: #aaa;
+    text-align: center;
+    font-size: 12px;
+}
+
 .user_post_data{
     margin-bottom: 1rem;
 }
@@ -266,4 +287,28 @@ main.container{
 .comment_user_post{
     padding-inline: 2rem;
     padding-top: 1.8rem;
+    color: #fff;
+}
+
+.edit {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    color: currentColor;
+
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+.delete {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    color: #e00;
+    text-decoration: none;
+
+    &:hover{
+        text-decoration: underline;
+    }
 }

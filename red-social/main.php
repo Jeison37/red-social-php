@@ -62,9 +62,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="left-side">
 
-        <div class="logo">
-            <img src="assets/logo.png" alt="">
-        </div>
+            <div class="logo">
+                <img src="assets/logo.png" alt="">
+            </div>
+
+            <div class="logout">
+                <form action="querys/logout.php" method="post">
+                    <input type="submit" value="Cerrar sesión">
+                </form>
+            </div>
             
         </div>
 
@@ -113,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <?php
                                 if ($post_user == $id || $user_rol == 1) {
                                 ?>
-                                    <a href="querys/deletePost.php?post=<?php echo $id_post ?>">
+                                    <a class="delete" href="querys/deletePost.php?post=<?php echo $id_post ?>">
                                         Eliminar
                                     </a>
                                 <?php } ?>

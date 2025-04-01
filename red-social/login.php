@@ -8,6 +8,20 @@ if (!empty($_SESSION["id"])) {
   exit;
 }
 
+if (isset($_SESSION["password_changed"])) {
+  if ($_SESSION["password_changed"] == "true") {
+
+    echo "<script language='JavaScript'>
+
+    alert('Contraseña actualizada exitosamente');
+
+</script>";
+
+    unset($_SESSION["password_changed"]);
+
+  }
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $correo = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
   $clave = $_POST["password"] ?? "";
@@ -22,22 +36,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit;
   }
 
-  $sql = $conn->prepare("SELECT id, password FROM usuarios WHERE correo_electronico = ?");
+  $sql = $conn->prepare("SELECT id, password, rol FROM usuarios WHERE correo_electronico = ?");
   $sql->bind_param("s", $correo);
   $sql->execute();
   $sql->store_result();
 
   if ($sql->num_rows === 1) {
-    $sql->bind_result($id, $hashedPassword);
+    $sql->bind_result($id, $hashedPassword, $rol);
     $sql->fetch();
     if (password_verify($clave, $hashedPassword)) {
       session_regenerate_id(true);
       $_SESSION["login"] = true;
       $_SESSION["id"] = $id;
+      $_SESSION["rol"] = $rol;
       header("Location: main.php");
       exit;
     } else {
       echo "Clave invalida $hashedPassword ";
+      echo password_hash($clave, PASSWORD_DEFAULT);
     }
   }
   $sql->close();
@@ -56,6 +72,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+
+<div class="password_modal" hidden>
+  Contraseña cambiada exitosamente
+</div>
 
   <div class="container">
 

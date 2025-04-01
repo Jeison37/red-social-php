@@ -42,10 +42,16 @@ $res_comments = $conn->query($query_comments);
 
 if ($res_post->num_rows > 0) {
     $post = $res_post->fetch_assoc();
-    $comment_contenido = $post["contenido"];
-    $comment_fecha_creacion = $post["fecha_creacion"];
-    $comment_nombre_usuario = $post["nombre_usuario"];
-    $comment_correo_electronico = $post["correo_electronico"];
+    $post_contenido = $post["contenido"];
+    $post_fecha_creacion = $post["fecha_creacion"];
+    $post_nombre_usuario = $post["nombre_usuario"];
+    $post_correo_electronico = $post["correo_electronico"];
+
+    $res_user_like = $conn->query("SELECT * from likes where id_publicacion = $id_post and id_usuario = $id");
+    $is_liked = $res_user_like->num_rows > 0 ? "liked" : "";
+
+    $res_likes = $conn->query("SELECT * from likes where id_publicacion = $id_post");
+    $likes_n = $res_likes->num_rows;
 }
 
 ?>
@@ -91,14 +97,14 @@ if ($res_post->num_rows > 0) {
                 <div class="comment_user_post">
                     <div class="user_comment_data">
                         <span class="username">
-                            <?php echo $comment_nombre_usuario ?>
+                            <?php echo $post_nombre_usuario ?>
                         </span>
                         <span class="email">
-                            <?php echo $comment_correo_electronico ?>
+                            <?php echo $post_correo_electronico ?>
                         </span>
                     </div>
                     <div class="contenido">
-                        <?php echo $comment_contenido ?>
+                        <?php echo $post_contenido ?>
                     </div>
                 </div>
 
@@ -116,7 +122,6 @@ if ($res_post->num_rows > 0) {
                                             </g>
                                         </svg>
                                     <?php
-                                    $res_comments = $conn->query("SELECT * from comentarios where id_publicacion = $id_post");
                                     echo $res_comments->num_rows;
                                     ?>
                                     </button>
@@ -173,7 +178,7 @@ if ($res_post->num_rows > 0) {
                                     <?php
                                     if ($comment_user == $id || $user_rol == 1) {
                                     ?>
-                                        <a href="querys/deleteComment.php?post=<?php echo $id_comment ?>">
+                                        <a class="delete" href="querys/deleteComment.php?post=<?php echo $id_comment ?>">
                                             Eliminar
                                         </a>
                                     <?php } ?>

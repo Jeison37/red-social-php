@@ -53,10 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
     <div class="container">
         <form class="form-body" action="" method="post">
             <div class="input">
-                <input type="text" required name="password" id="">
+                <input type="text" placeholder="Nueva contraseña" required name="password" id="">
             </div>
             <div class="input">
-                <input type="text" required name="password_confirm" id="">
+                <input type="text" placeholder="Confirmar contraseña" required name="password_confirm" id="">
             </div>
 
             <div class="form-btn">

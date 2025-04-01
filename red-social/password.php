@@ -24,8 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $user["correo_electronico"];
         $_SESSION["email"] = $user["id"];
         $code = random_int(100000, 999999);
-        echo $code;
-        // changePassword($code, $email);
+        changePassword($code, $email);
         $code = password_hash($code, PASSWORD_DEFAULT);
 
     } else {
@@ -50,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="container">
         <form action="check_code.php" method="post">
+            <p class="text-email">Introduce el codigo que te hemos enviado a tu correo</p>
             <div class="input">
                 <input type="number" name="code" id="" placeholder="Introduce el codigo">
 

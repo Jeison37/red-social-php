@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $correo_valid = preg_match("/^\s*$/", $correo) || preg_match("/<\/?[^>]+>/", $clave);
 
-  $clave_valid = preg_match("/^\s*$/", $clave) || preg_match("/<\/?[^>]+>/", $clave) || preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/", $clave);
+  $clave_valid = preg_match("/^\s*$/", $clave) || preg_match("/<\/?[^>]+>/", $clave);
 
   if ($clave_valid ||  $correo_valid || $username_valid) {
     echo "No cumple las validaciones";
@@ -31,12 +31,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $sql = $conn->prepare("INSERT INTO usuarios (nombre_usuario,correo_electronico,password,rol) VALUES (?,?,?,?)");
   $sql->bind_param("sssi", $username, $correo, $hash, $rol);
 
-  // welcome($correo);
+  welcome($correo);
   if ($sql->execute()) {
     session_regenerate_id(true);
     $_SESSION["login"] = true;
     $id = $conn->insert_id;
     $_SESSION["id"] = $id;
+    $_SESSION["rol"] = $rol;
+    
     header("Location: main.php");
     exit;
   }
@@ -63,6 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="login-container">
       <div class="login-box">
         <div class="form-head">
+          <div class="form-logo">
+            <img src="assets/logo.png" alt="">
+          </div>
         </div>
         <form class="form-body" action="register.php" method="post">
           <div class="input">
